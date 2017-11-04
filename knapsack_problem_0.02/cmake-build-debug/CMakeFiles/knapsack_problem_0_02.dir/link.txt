@@ -1,0 +1,3 @@
+"E:\CLion 2017.2.2\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\knapsack_problem_0_02.dir/objects.a
+E:\MinGw\mingw32\bin\ar.exe cr CMakeFiles\knapsack_problem_0_02.dir/objects.a @CMakeFiles\knapsack_problem_0_02.dir\objects1.rsp
+E:\MinGw\mingw32\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\knapsack_problem_0_02.dir/objects.a -Wl,--no-whole-archive  -o knapsack_problem_0_02.exe -Wl,--out-implib,libknapsack_problem_0_02.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\knapsack_problem_0_02.dir\linklibs.rsp
