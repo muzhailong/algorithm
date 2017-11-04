@@ -3,21 +3,19 @@
 #include <ctime>
 
 using namespace std;
-#define N 40
-#define M 40
 
-int m;
+#define N 100
+#define M 100
+int f[N][M];
+int capacity;
 int n;
-
 int weight[N];
 int value[N];
-int f[N][M];
-int result[N];
 
-void build()//dp算法
+void build()
 {
     for (int i = 1; i <= n; ++i) {
-        for (int j = 1; j <= m; ++j) {
+        for (int j = 1; j <= capacity; ++j) {
             if (weight[i] <= j) {
                 f[i][j] = max(f[i - 1][j], f[i - 1][j - weight[i]] + value[i]);
             } else {
@@ -27,49 +25,31 @@ void build()//dp算法
     }
 }
 
-void printObject()//打印选择的物品
+//随机整数
+int nextInt(int minValue, int maxValue)
 {
-
-    int i = n, j = m;
-    while (i > 0 && j >= 0) {
-        if (j >= weight[i] && (f[i][j] = f[i - 1][j - weight[i]] + value[i])) {
-            result[i] = true;
-            cout << i << "  ";
-            j -= weight[i];
-        }
-
-        --i;
-    }
-}
-
-int nextInt(int min, int max)
-{
-    return rand() % (max - min + 1) + min;
+    return rand() % (maxValue - minValue + 1) + minValue;
 }
 
 
 int main()
 {
-    ios::sync_with_stdio(false);
+    n = 10;
+    capacity = 14;
+    int minValue = 4;
+    int maxValue = 15;
+
     srand(time(NULL));
-    cin >> n;
-    cin >> m;
+    int i;
 
-    for (int i = 1; i <= n; ++i) {
-        weight[i] = nextInt(1, m + n);
-        value[i] = nextInt(1, n + m);
+    for (i = 1; i <= n; ++i) {
+        weight[i] = nextInt(minValue, maxValue);
+        value[i] = nextInt(minValue, maxValue);
     }
+
     build();
-
-
-    cout << f[n][m] << endl;
-
-    printObject();
-    for (int i = 1; i <= n; ++i) {
-        if (result[i]) {
-            cout << i << endl;
-        }
-    }
+    cout << f[n][capacity];
 
     return 0;
 }
+
